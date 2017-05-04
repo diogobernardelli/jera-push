@@ -6,7 +6,7 @@ module JeraPush
       if @device.nil?
         @device = JeraPush::Device.create device_params
       else
-        @device.update_attributes(resource_id: params[:resource_id])
+        @device.update_attributes(pushable_id: params[:pushable_id], pushable_type: params[:pushable_type])
       end
       render_object(@device)
     end
@@ -20,7 +20,7 @@ module JeraPush
 
     private
     def device_params
-      params.permit(:token, :platform, :resource_id)
+      params.permit(:token, :platform, :pushable_id, :pushable_type)
     end
   end
 end
